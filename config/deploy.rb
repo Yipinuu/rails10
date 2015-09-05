@@ -19,17 +19,17 @@ set :deploy_to, '/var/www/rails10'
 #   set :user, 'foobar'    # Username in the server to SSH to.
 #   set :port, '30000'     # SSH port number.
 #   set :forward_agent, true     # SSH forward_agent.
-set :user, 'deployer'
-set :port, '3118'
+set :user, 'deploy' 
+set :port, '22'
 set :forward_agent, false
 
 # 设置git
-set :repository, 'git://...'
+set :repository, 'git@github.com:Yipinuu/rails10.git'
 set :branch, 'master'
 
 # For system-wide RVM install.
-#   set :rvm_path, '/usr/local/rvm/bin/rvm'
-set :rbenv_path, '/usr/local/rvm/bin/rvm'
+set :rvm_path, '/usr/local/rvm/bin/rvm'
+# set :rbenv_path, '/usr/local/rvm/bin/rvm'
 
 # 设置sidekiq的进程保存地址
 set :sidekiq_pid, "#{deploy_to}/tmp/pids/sidekiq.pid"
@@ -38,7 +38,7 @@ set :sidekiq_pid, "#{deploy_to}/tmp/pids/sidekiq.pid"
 set :unicorn_pid, "#{deploy_to}/tmp/pids/unicorn.pid"
 set :unicorn_env, 'production'
 task :environment do
-  invoke :'rvm:use[ruby-2.0.0@default]'
+  invoke :'rvm:use[2.2.0@rails10]'
 end
 # This task is the environment that is loaded for most commands, such as
 # `mina deploy` or `mina rake`.
